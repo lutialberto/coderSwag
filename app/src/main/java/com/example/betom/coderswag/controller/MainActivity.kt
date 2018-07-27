@@ -1,7 +1,8 @@
-package com.example.betom.coderswag
+package com.example.betom.coderswag.controller
 
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import com.example.betom.coderswag.R
 
 class MainActivity : AppCompatActivity() {
 
