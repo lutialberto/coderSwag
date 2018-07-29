@@ -1,11 +1,13 @@
 package com.example.betom.coderswag.controller
 
+import android.content.Intent
 import android.content.res.Configuration
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.support.v7.widget.GridLayoutManager
 import com.example.betom.coderswag.R
 import com.example.betom.coderswag.Utilities.EXTRA_CATEGORY
+import com.example.betom.coderswag.Utilities.EXTRA_PRODUCT
 import com.example.betom.coderswag.adapters.ProductsAdapter
 import com.example.betom.coderswag.services.DataService
 import kotlinx.android.synthetic.main.activity_products.*
@@ -19,7 +21,11 @@ class ProductsActivity : AppCompatActivity() {
         setContentView(R.layout.activity_products)
 
         val categoryType = intent.getStringExtra(EXTRA_CATEGORY)
-        adapter = ProductsAdapter(this,DataService.getProducts(categoryType))
+        adapter = ProductsAdapter(this,DataService.getProducts(categoryType)){ product ->
+            val productIntent = Intent(this,ProductDetailActivity::class.java)
+            productIntent.putExtra(EXTRA_PRODUCT,product)
+            startActivity(productIntent)
+        }
 
 
         var spanCount = 2
